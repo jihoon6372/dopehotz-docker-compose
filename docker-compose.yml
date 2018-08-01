@@ -1,0 +1,39 @@
+version: "3.5"
+
+services:
+  server:
+    image: jihoon6372/dopehotz:0.8
+    container_name: dopehotz_0.8
+
+    volumes:
+      - ./tmp/:/tmp/
+      - ./env/:/home/docker/django/env/
+
+    links:
+      - db:db
+
+    ports:
+      - "8000:8000"
+      - "50022:22"
+
+  db:
+    image: jihoon6372/mysql:test2
+    container_name: mysql_0.1
+    environment:
+      MYSQL_DATABASE: dopehotz
+      MYSQL_USER: dopehotz
+      MYSQL_PASSWORD: dopehotz
+
+    ports:
+      - "3306:3306"
+
+  nginx:
+    image: jihoon6372/dopehotz:nginx_v.0.1
+    container_name: nginx_0.1
+
+    volumes:
+      - ./tmp/:/tmp/
+
+    ports:
+      - "80:80"
+      - "443:443"
