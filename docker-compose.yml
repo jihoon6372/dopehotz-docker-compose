@@ -9,6 +9,7 @@ services:
       - ./tmp:/tmp/
       - ./data/env:/home/docker/django/env/
       - ./static:/home/docker/django/static/
+      - ./assets:/home/docker/django/assets/
 
     links:
       - db:db
@@ -34,6 +35,7 @@ services:
     volumes:
       - ./tmp:/tmp/
       - ./static:/home/dopehotz/static/
+      - ./assets:/home/dopehotz/assets/
 
     ports:
       - "80:80"
