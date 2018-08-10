@@ -29,13 +29,15 @@ services:
       - "3306:3306"
 
   nginx:
-    image: jihoon6372/dopehotz:nginx_ssl_server_v0.4.1
+    image: jihoon6372/dopehotz:nginx_ssl_server_v0.4.6
     container_name: nginx_ssl
 
     volumes:
       - ./tmp:/tmp/
       - ./static:/home/dopehotz/static/
       - ./assets:/home/dopehotz/assets/
+      - ./data/logrotate.d/nginx:/etc/logrotate.d/nginx
+
       - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
 
       - /docker-volumes/etc/letsencrypt/live/api.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/api.dopehotz.com/fullchain.pem
