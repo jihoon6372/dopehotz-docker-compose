@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   dopehotz:
-    image: jihoon6372/dopehotz:1.0.0
-    container_name: dopehotz_1.0.0
+    image: jihoon6372/dopehotz:1.0.1
+    container_name: dopehotz_server
 
     volumes:
       - ./tmp:/tmp/
