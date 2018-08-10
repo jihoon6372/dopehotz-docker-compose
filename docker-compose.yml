@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   dopehotz:
-    image: jihoon6372/dopehotz:0.9
-    container_name: dopehotz_0.9
+    image: jihoon6372/dopehotz:1.0.0
+    container_name: dopehotz_1.0.0
 
     volumes:
       - ./tmp:/tmp/
@@ -29,13 +29,35 @@ services:
       - "3306:3306"
 
   nginx:
-    image: jihoon6372/dopehotz:nginx_v.0.2
-    container_name: nginx_0.2
+    image: jihoon6372/dopehotz:nginx_ssl_server_v0.4.1
+    container_name: nginx_ssl
 
     volumes:
       - ./tmp:/tmp/
       - ./static:/home/dopehotz/static/
       - ./assets:/home/dopehotz/assets/
+      - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+
+      - /docker-volumes/etc/letsencrypt/live/api.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/api.dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/api.dopehotz.com/privkey.pem:/etc/letsencrypt/live/api.dopehotz.com/privkey.pem
+
+      - /docker-volumes/etc/letsencrypt/live/tower.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/tower.dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/tower.dopehotz.com/privkey.pem:/etc/letsencrypt/live/tower.dopehotz.com/privkey.pem
+
+      - /docker-volumes/etc/letsencrypt/live/adm.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/adm.dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/adm.dopehotz.com/privkey.pem:/etc/letsencrypt/live/adm.dopehotz.com/privkey.pem
+
+      - /docker-volumes/etc/letsencrypt/live/auth.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/auth.dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/auth.dopehotz.com/privkey.pem:/etc/letsencrypt/live/auth.dopehotz.com/privkey.pem
+
+      - /docker-volumes/etc/letsencrypt/live/dopehotz.com/fullchain.pem:/etc/letsencrypt/live/dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/dopehotz.com/privkey.pem:/etc/letsencrypt/live/dopehotz.com/privkey.pem
+
+      - /docker-volumes/etc/letsencrypt/live/www.dopehotz.com/fullchain.pem:/etc/letsencrypt/live/www.dopehotz.com/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/www.dopehotz.com/privkey.pem:/etc/letsencrypt/live/www.dopehotz.com/privkey.pem
+
+      - /home/yun/nginxfiles/dist/:/home/yun/nginxfiles/dist/
+
 
     ports:
       - "80:80"
