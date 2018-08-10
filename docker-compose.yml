@@ -18,15 +18,23 @@ services:
       - "8000:8000"
       - "50022:22"
 
+    environment:
+      TZ: "Asia/Seoul"
+
+
   db:
     image: jihoon6372/dopehotz:mysql_v.0.1
-    container_name: mysql_0.2
+    container_name: mysql
 
     volumes:
       - ./mysql:/var/lib/mysql/
 
     ports:
       - "3306:3306"
+
+    environment:
+      TZ: "Asia/Seoul"
+
 
   nginx:
     image: jihoon6372/dopehotz:nginx_ssl_server_v0.4.6
@@ -60,7 +68,9 @@ services:
 
       - /home/yun/nginxfiles/dist/:/home/yun/nginxfiles/dist/
 
-
     ports:
       - "80:80"
       - "443:443"
+
+    environment:
+      TZ: "Asia/Seoul"
